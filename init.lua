@@ -37,7 +37,6 @@ vim.pack.add({
 
 })
 
-
 require('telescope').setup({
    defaults = {
       file_ignore_patterns = {
@@ -51,6 +50,7 @@ require('telescope').setup({
       },
    },
 })
+
 vim.keymap.set({ "n" }, "<leader><leader>", ":Telescope find_files<CR>")
 vim.keymap.set({ "n" }, "<leader>fg", ":Telescope live_grep<CR>")
 
@@ -89,14 +89,16 @@ vim.lsp.config['lua-language-server'] = {
    filetypes = { 'lua' },
 }
 
-vim.lsp.enable({ 'lua-language-server', 'clangd', 'arduino-language-server' })
+vim.lsp.enable({ 'lua-language-server',
+   'clangd',
+   'arduino-language-server',
+})
 
 vim.keymap.set({ "n" }, '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set({ "n" }, '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set({ "n" }, '<leader>k', vim.lsp.buf.hover)
 
-require("nvim-treesitter.configs").setup{
-   ensure_installed = {"c", "cpp", "lua", "markdown"},
-   highlight = {enable = true}, 
+require("nvim-treesitter.configs").setup {
+   ensure_installed = { "c", "cpp", "lua", "markdown" },
+   highlight = { enable = true },
 }
-

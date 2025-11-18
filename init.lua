@@ -97,6 +97,8 @@ vim.lsp.config['lua-language-server'] = {
 vim.lsp.enable({ 'lua-language-server',
    'clangd',
    'arduino-language-server',
+   'jdtls',
+   'pyright',
 })
 
 vim.keymap.set({ "n" }, '<leader>lf', vim.lsp.buf.format)
@@ -104,6 +106,6 @@ vim.keymap.set({ "n" }, '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set({ "n" }, '<leader>k', vim.lsp.buf.hover)
 
 require("nvim-treesitter.configs").setup {
-   ensure_installed = { "c", "cpp", "lua", "markdown" },
+   ensure_installed = { "c", "cpp", "lua", "markdown", "java", "python"},
    highlight = { enable = true },
 }

@@ -37,7 +37,7 @@ vim.pack.add({
    { src = 'https://github.com/neovim/nvim-lspconfig' },
    { src = 'https://github.com/mason-org/mason.nvim' },
    { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
-
+   { src = 'https://github.com/nvimtools/none-ls.nvim' },
 })
 
 require('nvim-surround').setup()
@@ -75,26 +75,13 @@ vim.cmd("colorscheme catppuccin-frappe")
 vim.keymap.set({ "n" }, "<leader>lm", ":colorscheme catppuccin-latte<CR>")
 vim.keymap.set({ "n" }, "<leader>dm", ":colorscheme catppuccin-frappe<CR>")
 
+-- LSP
 require("mason").setup()
-vim.lsp.config['clangd'] = {
-   filetypes = { "c", "cpp", "objc", "objcpp" },
-}
 
-vim.lsp.config['arduino-language-server'] = {
-   cmd = {
-      "arduino-language-server",
-   },
-   filetypes = { "ino" },
-}
+vim.lsp.config['lua-language-server'] = {}
 
-vim.lsp.config['lua-language-server'] = {
-   cmd = {
-      'lua-language-server',
-   },
-   filetypes = { 'lua' },
-}
-
-vim.lsp.enable({ 'lua-language-server',
+vim.lsp.enable({ 
+   'lua-language-server',
    'clangd',
    'arduino-language-server',
    'jdtls',
@@ -105,7 +92,18 @@ vim.keymap.set({ "n" }, '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set({ "n" }, '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set({ "n" }, '<leader>k', vim.lsp.buf.hover)
 
+-- Highlighting
 require("nvim-treesitter.configs").setup {
    ensure_installed = { "c", "cpp", "lua", "markdown", "java", "python"},
    highlight = { enable = true },
 }
+
+-- Formatting
+local null_ls = require("null-ls")
+
+null_ls.setup({
+   sources = {
+      null_ls.builtins.formatting.black,
+   },
+})
+

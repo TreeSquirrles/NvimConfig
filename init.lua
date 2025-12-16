@@ -4,8 +4,8 @@ vim.o.relativenumber = true
 vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.expandtab = true
-vim.o.shiftwidth = 3
-vim.o.tabstop = 3
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
 
 vim.g.mapleader = " "
 
@@ -60,7 +60,7 @@ require('telescope').setup({
    },
 })
 
-vim.keymap.set({ "n" }, "<leader><leader>", ":Telescope find_files<CR>")
+vim.keymap.set({ "n" }, "<a-Space>", ":Telescope find_files<CR>")
 vim.keymap.set({ "n" }, "<leader>fg", ":Telescope live_grep<CR>")
 
 require('oil').setup({
@@ -95,6 +95,7 @@ vim.lsp.enable({
 vim.keymap.set({ "n" }, '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set({ "n" }, '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set({ "n" }, '<leader>k', vim.lsp.buf.hover)
+vim.keymap.set({ "n" }, '<leader> gD', vim.lsp.buf.definition)
 
 -- Highlighting
 require("nvim-treesitter.configs").setup {

@@ -14,6 +14,7 @@ vim.o.winborder = "rounded"
 vim.o.linebreak = true
 vim.g.nolist = true
 vim.o.breakindent = true
+vim.o.foldmethod = "indent"
 
 
 vim.keymap.set({ "n" }, "<leader>w", ":write<CR>")

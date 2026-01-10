@@ -14,13 +14,12 @@ vim.o.winborder = "rounded"
 vim.o.linebreak = true
 vim.g.nolist = true
 vim.o.breakindent = true
-vim.o.foldmethod = "indent"
-
 
 vim.keymap.set({ "n" }, "<leader>w", ":write<CR>")
 vim.keymap.set({ "n" }, "<leader>q", ":quit<CR>")
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
-
+vim.keymap.set({"n"}, "<leader>fm", ":set foldmethod=indent<CR>")
+vim.keymap.set({"n"}, "<leader>fq", ":qall!<CR>")
 
 vim.pack.add({
    -- Surround
@@ -61,7 +60,7 @@ require('telescope').setup({
    },
 })
 
-vim.keymap.set({ "n" }, "<a-Space>", ":Telescope find_files<CR>")
+vim.keymap.set({ "n" }, "<leader>ff", ":Telescope find_files<CR>")
 vim.keymap.set({ "n" }, "<leader>fg", ":Telescope live_grep<CR>")
 
 require('oil').setup({

@@ -15,6 +15,8 @@ vim.o.linebreak = true
 vim.g.nolist = true
 vim.o.breakindent = true
 
+vim.o.termguicolors = true
+
 vim.keymap.set({ "n" }, "<leader>w", ":write<CR>")
 vim.keymap.set({ "n" }, "<leader>q", ":quit<CR>")
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
@@ -31,8 +33,9 @@ vim.pack.add({
    { src = 'https://github.com/nvim-lua/plenary.nvim' },
    { src = 'https://github.com/nvim-telescope/telescope.nvim' },
 
-   -- cattpuccin
+   -- cattpuccin / nvim theme
    { src = 'https://github.com/catppuccin/nvim' },
+   { src = 'https://github.com/xiyaowong/transparent.nvim'},
 
    --Oil
    { src = 'https://github.com/stevearc/oil.nvim' },
@@ -76,15 +79,36 @@ require('oil').setup({
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
--- Colorschemes
+-- Colorschemes and themes
+ -- Optional, you don't have to run setup.
+require("transparent").setup({
+  -- table: default groups
+  groups = {
+    'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+    'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+    'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+    'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+    'EndOfBuffer',
+  },
+  -- table: additional groups that should be cleared
+  extra_groups = {},
+  -- table: groups you don't want to clear
+  exclude_groups = {},
+  -- function: code to be executed after highlight groups are cleared
+  -- Also the user event "TransparentClear" will be triggered
+  on_clear = function() end,
+})
+
 vim.cmd("colorscheme catppuccin-frappe")
 vim.keymap.set({ "n" }, "<leader>lm", ":colorscheme catppuccin-latte<CR>")
 vim.keymap.set({ "n" }, "<leader>dm", ":colorscheme catppuccin-frappe<CR>")
 
+
+
 -- LSP
 require("mason").setup()
 
-require('lspconfig').lua_ls.setup({})
+vim.lsp.config['lua-language-server'] = {}
 
 vim.lsp.enable({ 
    'lua-language-server',

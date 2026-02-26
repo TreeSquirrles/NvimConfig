@@ -43,6 +43,14 @@
     "telescope.nvim": {
       "rev": "0294ae3",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "transparent.nvim": {
+      "rev": "8ac5988",
+      "src": "https://github.com/xiyaowong/transparent.nvim"
+    },
+    "vim-tmux-navigator": {
+      "rev": "e41c431",
+      "src": "https://github.com/christoomey/vim-tmux-navigator"
     }
   }
 }

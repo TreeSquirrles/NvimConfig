@@ -22,6 +22,8 @@ vim.keymap.set({"n"}, "<leader>fm", ":set foldmethod=indent<CR>")
 vim.keymap.set({"n"}, "<leader>fq", ":qall!<CR>")
 
 vim.pack.add({
+   -- vim-tmux movement
+   { src = 'https://github.com/christoomey/vim-tmux-navigator' },
    -- Surround
    { src = 'https://github.com/kylechui/nvim-surround' },
 
@@ -82,7 +84,7 @@ vim.keymap.set({ "n" }, "<leader>dm", ":colorscheme catppuccin-frappe<CR>")
 -- LSP
 require("mason").setup()
 
-vim.lsp.config['lua-language-server'] = {}
+require('lspconfig').lua_ls.setup({})
 
 vim.lsp.enable({ 
    'lua-language-server',
@@ -111,4 +113,10 @@ null_ls.setup({
       null_ls.builtins.formatting.black,
    },
 })
+
+-- Tmux Navigator Keymaps
+vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>")
+vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>")
+vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>")
+vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>")
 
